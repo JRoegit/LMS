@@ -29,5 +29,10 @@ namespace LibraryManagementSystem
 		{
 			System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
         }
-    }
+
+		private void TabItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			MessageBox.Show("clicked");
+		}
+	}
 }

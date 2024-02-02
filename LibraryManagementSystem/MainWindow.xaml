@@ -5,9 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <TextBlock Margin="10">Library Management System</TextBlock>
-        <TextBlock Margin="376,397,376,10" TextWrapping="Wrap"> <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="https://github.com/JRoegit/LMS">GitHub</Hyperlink></TextBlock>
+        Title="MainWindow" Height="450" Width="800"
+        Icon="/Images/icon.png">
+    <Grid Background="Lavender">
+        <TabControl>
+            <TabItem IsSelected="True" Cursor="Hand">
+                <TabItem.Header >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Library" Foreground="MediumPurple"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <DockPanel>
+                    <WrapPanel  DockPanel.Dock="Left" Orientation="Vertical">
+                        <Button Margin="0,5" Content="_Browse Books"></Button>
+                        <Button Margin="0,5" Content="_Add Books"></Button>
+                        <Button Margin="0,5" Content="_Remove Books"></Button>
+                        <Button Margin="0,5" Content="_Update Books"></Button>
+                    </WrapPanel>
+                </DockPanel>
+            </TabItem>
+            <TabItem Cursor="Hand">
+                <TabItem.Header>
+                    <TextBlock Text="My Books" Foreground="MediumPurple"/>
+                </TabItem.Header>
+                
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
