@@ -9,10 +9,13 @@
       Title="Main">
 
     <Grid Background="Lavender">
+        <Button Content="Sign Out" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" MinWidth="65" Height="25" Background="Transparent" Click="Sign_Out_Button_Click" 
+        BorderBrush="Transparent" Foreground="DodgerBlue"/>
         <StackPanel Orientation="Horizontal" Height="36" VerticalAlignment="Top">
             <Button Content="Library" Margin="5,0,0,0" MinWidth="65" Background="White" Click="Library_Button_Click"/>
             <Button Content="My Books" Margin="5,0,0,0" MinWidth="65" Background="White" Click="My_Books_Button_Click"/>
         </StackPanel>
         <Frame x:Name="MainPage" Margin="0,35,0,0" NavigationUIVisibility="Hidden" BorderThickness="1" BorderBrush="Gray" Source="Library.xaml"/>
+
     </Grid>
 </Page>

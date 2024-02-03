@@ -8,7 +8,13 @@
       d:DesignHeight="230" d:DesignWidth="400"
       Title="MyBooks">
 
-    <Grid Background="Lavender">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="White" />
+                <GradientStop Color="Lavender" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <TextBlock>ADD BOOK STUFF HERE</TextBlock>
     </Grid>
 </Page>

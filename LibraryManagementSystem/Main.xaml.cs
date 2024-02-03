@@ -34,5 +34,10 @@ namespace LibraryManagementSystem
 		{
 			MainPage.Content = new MyBooks();
 		}
+
+		private void Sign_Out_Button_Click(object sender, RoutedEventArgs e)
+		{
+			this.NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+		}
 	}
 }
