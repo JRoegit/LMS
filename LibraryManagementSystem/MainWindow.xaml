@@ -5,31 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        Icon="/Images/icon.png">
+        Title="LMS" Height="230" Width="400"
+        ResizeMode="NoResize"
+        Icon="/Images/icon.png"
+        >
     <Grid Background="Lavender">
-        <TabControl>
-            <TabItem IsSelected="True" Cursor="Hand">
-                <TabItem.Header >
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Library" Foreground="MediumPurple"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <DockPanel>
-                    <WrapPanel  DockPanel.Dock="Left" Orientation="Vertical">
-                        <Button Margin="0,5" Content="_Browse Books"></Button>
-                        <Button Margin="0,5" Content="_Add Books"></Button>
-                        <Button Margin="0,5" Content="_Remove Books"></Button>
-                        <Button Margin="0,5" Content="_Update Books"></Button>
-                    </WrapPanel>
-                </DockPanel>
-            </TabItem>
-            <TabItem Cursor="Hand">
-                <TabItem.Header>
-                    <TextBlock Text="My Books" Foreground="MediumPurple"/>
-                </TabItem.Header>
-                
-            </TabItem>
-        </TabControl>
+        <StackPanel Orientation="Horizontal" Height="36" VerticalAlignment="Top">
+            <Button Content="Library" Margin="5,0,0,0" MinWidth="65" Background="White" Click="Library_Button_Click"/>
+            <Button Content="My Books" Margin="5,0,0,0" MinWidth="65" Background="White" Click="My_Books_Button_Click"/>
+        </StackPanel>
+        <Frame x:Name="Main" Margin="0,35,0,0" NavigationUIVisibility="Hidden" BorderThickness="1" BorderBrush="Gray" Source="Library.xaml"/>
     </Grid>
 </Window>

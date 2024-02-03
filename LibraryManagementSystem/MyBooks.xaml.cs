@@ -16,29 +16,13 @@ using System.Windows.Shapes;
 namespace LibraryManagementSystem
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for MyBooks.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MyBooks : Page
 	{
-		
-		public MainWindow()
+		public MyBooks()
 		{
 			InitializeComponent();
-		}
-
-		private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
-		{ 
-			System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
-        }
-
-		private void Library_Button_Click(object sender, RoutedEventArgs e)
-		{
-			Main.Content = new Library();
-		}
-
-		private void My_Books_Button_Click(object sender, RoutedEventArgs e)
-		{
-			Main.Content = new MyBooks();
 		}
 	}
 }
