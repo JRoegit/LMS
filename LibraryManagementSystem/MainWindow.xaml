@@ -10,6 +10,6 @@
         Icon="/Images/icon.png"
         >
     <Grid Background="Lavender"> <!--CHANGE THIS TO LOGIN DEFAULT-->
-        <Frame Source="Main.xaml" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="MainWindowFrame" Source="Login.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

@@ -1,4 +1,4 @@
-﻿<Page x:Class="LibraryManagementSystem.Login"
+﻿<Page x:Class="LibraryManagementSystem.SignUp"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,28 +6,23 @@
       xmlns:local="clr-namespace:LibraryManagementSystem"
       mc:Ignorable="d" 
       d:DesignHeight="230" d:DesignWidth="400"
-      Title="Login">
+      Title="SignUp">
 
     <Grid>
         <Grid.Background>
             <LinearGradientBrush>
                 <GradientStop Color="White" />
                 <GradientStop Color="Lavender" Offset="1"/>
-            </LinearGradientBrush>
+            </LinearGradientBrush>   
         </Grid.Background>
-        <Image Source="/Images/library.png" Width="150" Height="150" Margin="225,0,0,0"/>
-        <StackPanel Margin="20,0,0,0" Orientation="Vertical">
-            <StackPanel Orientation="Vertical" Width="195" HorizontalAlignment="Left">
-                <Label Content="LMS Login"/>
+        <StackPanel Margin="10" Orientation="Vertical">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <Label Content="LMS Signup" HorizontalAlignment="Center"/>
                 <Label Content="_Username:" Target="{Binding ElementName=txtUser}"/>
                 <TextBox MaxLength="24" Margin="5,0,0,0" HorizontalAlignment="Left" x:Name="txtUser" Width="180"/>
                 <Label Content="_Password:" Target="{Binding ElementName=txtPass}"/>
                 <PasswordBox MaxLength="16" Margin="5,0,0,0" HorizontalAlignment="Left" x:Name="txtPass" Width="180"/>
-                <Button Content="Login" Width="180" HorizontalAlignment="Left" Margin="5,10,0,0" BorderBrush="DeepSkyBlue" Background="SkyBlue" Click="Login_Button_Click"/>
-                <StackPanel Margin="25,5,0,0" Orientation="Horizontal">
-                    <Label Content="No account?"/>
-                    <Button Content="_Sign up" Background="Transparent" BorderBrush="Transparent" Foreground="DodgerBlue" Click="Sign_Up_Button_Click"/>
-                </StackPanel>
+                <Button Content="_Sign Up" Width="180" HorizontalAlignment="Left" Margin="5,10,0,0" BorderBrush="DeepSkyBlue" Background="SkyBlue"/>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -16,23 +16,13 @@ using System.Windows.Shapes;
 namespace LibraryManagementSystem
 {
 	/// <summary>
-	/// Interaction logic for Login.xaml
+	/// Interaction logic for SignUp.xaml
 	/// </summary>
-	public partial class Login : Page
+	public partial class SignUp : Page
 	{
-		public Login()
+		public SignUp()
 		{
 			InitializeComponent();
-		}
-
-		private void Sign_Up_Button_Click(object sender, RoutedEventArgs e)
-		{
-			this.NavigationService.Navigate(new Uri("/SignUp.xaml", UriKind.Relative));
-		}
-
-		private void Login_Button_Click(object sender, RoutedEventArgs e)
-		{
-			this.NavigationService.Navigate(new Uri("/Main.xaml", UriKind.Relative));
 		}
 	}
 }
