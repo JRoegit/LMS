@@ -1,0 +1,59 @@
+﻿<Page x:Class="LibraryManagementSystem.Edit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LibraryManagementSystem"
+      mc:Ignorable="d" 
+      d:DesignHeight="230" d:DesignWidth="400"
+      Title="Edit">
+    <Page.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
+        <Style x:Key="1line" TargetType="TextBox">
+            <Setter Property="Width" Value="180"/>
+        </Style>
+    </Page.Resources>
+    <Grid Background="{StaticResource GradBG}">
+        <TabControl>
+            <TabItem Header="Add a Book">
+                <UniformGrid>
+                    <StackPanel>
+                        <Label Content="Book _Title:" Target="{Binding ElementName=bkTitle}"/>
+                        <TextBox Style="{StaticResource 1line}" x:Name="bkTitle"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Book _Author:" Target="{Binding ElementName=bkAuthor}"/>
+                        <TextBox Style="{StaticResource 1line}" x:Name="bkAuthor"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="_Language" Target="{Binding ElementName=bkLanguage}"/>
+                        <ComboBox>
+                            <ComboBoxItem>Hello</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </UniformGrid>
+            </TabItem>
+            <TabItem Header="Remove a Book">
+                <StackPanel>
+                    
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Update a Book">
+                <StackPanel>
+                    
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Search for a Book">
+                <StackPanel>
+
+                </StackPanel>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Page>

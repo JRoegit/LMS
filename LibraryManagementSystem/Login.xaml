@@ -8,13 +8,8 @@
       d:DesignHeight="230" d:DesignWidth="400"
       Title="Login">
 
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush>
-                <GradientStop Color="White" />
-                <GradientStop Color="Lavender" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Grid Background="{StaticResource GradBG}">
+        
         <Image Source="/Images/library.png" Width="150" Height="150" Margin="225,0,0,0"/>
         <StackPanel Margin="20,0,0,0" Orientation="Vertical">
             <StackPanel Orientation="Vertical" Width="195" HorizontalAlignment="Left">
@@ -26,7 +21,7 @@
                 <Button Content="Login" Width="180" HorizontalAlignment="Left" Margin="5,10,0,0" BorderBrush="DeepSkyBlue" Background="SkyBlue" Click="Login_Button_Click"/>
                 <StackPanel Margin="25,5,0,0" Orientation="Horizontal">
                     <Label Content="No account?"/>
-                    <Button Content="_Sign up" Background="Transparent" BorderBrush="Transparent" Foreground="DodgerBlue" Click="Sign_Up_Button_Click"/>
+                    <Button Content="_Create one!" Background="Transparent" BorderBrush="Transparent" Foreground="DodgerBlue" Click="Sign_Up_Button_Click"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

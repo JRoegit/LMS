@@ -29,10 +29,15 @@ namespace LibraryManagementSystem
 		{
 			this.NavigationService.Navigate(new Uri("/SignUp.xaml", UriKind.Relative));
 		}
-
+		private string username;
+		private string password;
 		private void Login_Button_Click(object sender, RoutedEventArgs e)
 		{
-			this.NavigationService.Navigate(new Uri("/Main.xaml", UriKind.Relative));
+			username = txtUser.Text;
+			password = txtPass.Password;
+			
+			//ADD CHECKS FOR SUCCESSFUL LOGIN BEFORE CHANGING TABS
+			this.NavigationService.Navigate(new Uri("/Library.xaml", UriKind.Relative));
 		}
 	}
 }

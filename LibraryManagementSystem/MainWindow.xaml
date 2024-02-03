@@ -9,7 +9,7 @@
         ResizeMode="NoResize"
         Icon="/Images/icon.png"
         >
-    <Grid Background="Lavender"> <!--CHANGE THIS TO LOGIN DEFAULT-->
+    <Grid> <!--CHANGE THIS TO LOGIN DEFAULT-->
         <Frame x:Name="MainWindowFrame" Source="Login.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

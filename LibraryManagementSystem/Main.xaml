@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="230" d:DesignWidth="400"
       Title="Main">
-
+    
     <Grid Background="Lavender">
         <Button Content="Sign Out" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" MinWidth="65" Height="25" Background="Transparent" Click="Sign_Out_Button_Click" 
         BorderBrush="Transparent" Foreground="DodgerBlue"/>

@@ -1,4 +1,4 @@
-﻿<Page x:Class="LibraryManagementSystem.MyBooks"
+﻿<Page x:Class="LibraryManagementSystem.Browse"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,10 +6,9 @@
       xmlns:local="clr-namespace:LibraryManagementSystem"
       mc:Ignorable="d" 
       d:DesignHeight="230" d:DesignWidth="400"
-      Title="MyBooks">
+      Title="Browse">
 
     <Grid Background="{StaticResource GradBG}">
-        
-        <TextBlock>ADD BOOK STUFF HERE</TextBlock>
+        <TextBlock>NEED DB CONNECTION PROPBABLY or ALL DONE FROM BEHIND CODE</TextBlock>
     </Grid>
 </Page>

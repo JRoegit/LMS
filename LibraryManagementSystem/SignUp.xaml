@@ -8,13 +8,7 @@
       d:DesignHeight="230" d:DesignWidth="400"
       Title="SignUp">
 
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush>
-                <GradientStop Color="White" />
-                <GradientStop Color="Lavender" Offset="1"/>
-            </LinearGradientBrush>   
-        </Grid.Background>
+    <Grid Background="{StaticResource GradBG}">
         <Button Content="_Back" Click="Back_Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="15"
                 BorderBrush="DeepSkyBlue" Background="SkyBlue"/>
         <StackPanel Margin="10" Orientation="Vertical">
@@ -24,7 +18,7 @@
                 <TextBox MaxLength="24" Margin="5,0,0,0" HorizontalAlignment="Left" x:Name="txtUser" Width="180"/>
                 <Label Content="_Password:" Target="{Binding ElementName=txtPass}"/>
                 <PasswordBox MaxLength="16" Margin="5,0,0,0" HorizontalAlignment="Left" x:Name="txtPass" Width="180"/>
-                <Button Content="_Sign Up" Width="180" HorizontalAlignment="Left" Margin="5,10,0,0" BorderBrush="DeepSkyBlue" Background="SkyBlue"/>
+                <Button Content="_Sign Up" Width="180" HorizontalAlignment="Left" Margin="5,10,0,0" BorderBrush="DeepSkyBlue" Background="SkyBlue" Click="Sign_Up_Button_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

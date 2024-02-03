@@ -7,39 +7,42 @@
       mc:Ignorable="d" 
       d:DesignHeight="230" d:DesignWidth="400"
       Title="Library">
-
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="White" />
-                <GradientStop Color="Lavender" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <UniformGrid Margin="15">
-            <Button HorizontalAlignment="Left" Margin="0,5" Background="Transparent" BorderBrush="Transparent">
-                <WrapPanel Orientation="Horizontal" Width="150">
-                    <Image Source="/Images/plus.png" Height="25" Width="25"/>
-                    <TextBlock Margin="10,0,0,0" Text="Add book" FontSize="18" Width="87"/>
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="0,15"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Width" Value="115"/>
+        </Style>
+        <Style TargetType="WrapPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Width" Value="150"/>
+        </Style>
+        <Style TargetType="Image" x:Key="buttonimg">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="25"/>
+        </Style>
+    </Page.Resources>
+    <Grid Background="{StaticResource GradBG}">
+        <Image Source="/Images/library.png" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,20,40,20" Height="100" Width="100"/>
+        <StackPanel Margin="15" Width="160" HorizontalAlignment="Left">
+            <Button Click="Edit_Button_Click">
+                <WrapPanel>
+                    <Image Style="{StaticResource buttonimg}" Source="/Images/Edit.png"/>
+                    <TextBlock Text="Edit Library"/>
                 </WrapPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Margin="0,5" Background="Transparent" BorderBrush="Transparent">
-                <WrapPanel Orientation="Horizontal" Width="150">
-                    <Image Source="/Images/browse.png" Height="25" Width="25"/>
-                    <TextBlock Margin="10,0,0,0" Text="Browse books" FontSize="18" Width="110"/>
+            <Button Click="Browse_Button_Click">
+                <WrapPanel>
+                    <Image Style="{StaticResource buttonimg}" Source="/Images/browse.png"/>
+                    <TextBlock Text="Browse books"/>
                 </WrapPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Margin="0,5" Background="Transparent" BorderBrush="Transparent">
-                <WrapPanel Orientation="Horizontal" Width="150">
-                    <Image Source="/Images/minus.png" Height="25" Width="25"/>
-                    <TextBlock Margin="10,0,0,0" Text="Remove book" FontSize="18" Width="115"/>
-                </WrapPanel>
-            </Button>
-            <Button HorizontalAlignment="Left" Margin="0,5" Background="Transparent" BorderBrush="Transparent">
-                <WrapPanel Orientation="Horizontal" Width="150">
-                    <Image Source="/Images/update.png" Height="25" Width="25"/>
-                    <TextBlock Margin="10,0,0,0" Text="Update book" FontSize="18" Width="115"/>
-                </WrapPanel>
-            </Button>
-        </UniformGrid>
+        </StackPanel>
     </Grid>
 </Page>

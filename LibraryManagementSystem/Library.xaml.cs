@@ -24,5 +24,15 @@ namespace LibraryManagementSystem
 		{
 			InitializeComponent();
 		}
+
+		private void Edit_Button_Click(object sender, RoutedEventArgs e)
+		{
+			this.NavigationService.Navigate(new Uri("/Edit.xaml",UriKind.Relative));
+		}
+		
+		private void Browse_Button_Click(object sender, RoutedEventArgs e)
+		{
+			this.NavigationService.Navigate(new Uri("/Browse.xaml", UriKind.Relative));
+		}
 	}
 }

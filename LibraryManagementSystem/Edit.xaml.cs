@@ -16,26 +16,13 @@ using System.Windows.Shapes;
 namespace LibraryManagementSystem
 {
 	/// <summary>
-	/// Interaction logic for SignUp.xaml
+	/// Interaction logic for Edit.xaml
 	/// </summary>
-	public partial class SignUp : Page
+	public partial class Edit : Page
 	{
-		public SignUp()
+		public Edit()
 		{
 			InitializeComponent();
-		}
-
-		private void Back_Button_Click(object sender, RoutedEventArgs e)
-		{
-			this.NavigationService.GoBack();
-        }
-		private string username;
-		private string password;
-		private void Sign_Up_Button_Click(object sender, RoutedEventArgs e)
-		{
-			username = txtUser.Text;
-			password = txtPass.Password;
-			//MessageBox.Show(username,password);
 		}
 	}
 }
