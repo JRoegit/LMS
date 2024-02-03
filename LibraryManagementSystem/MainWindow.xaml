@@ -9,11 +9,7 @@
         ResizeMode="NoResize"
         Icon="/Images/icon.png"
         >
-    <Grid Background="Lavender">
-        <StackPanel Orientation="Horizontal" Height="36" VerticalAlignment="Top">
-            <Button Content="Library" Margin="5,0,0,0" MinWidth="65" Background="White" Click="Library_Button_Click"/>
-            <Button Content="My Books" Margin="5,0,0,0" MinWidth="65" Background="White" Click="My_Books_Button_Click"/>
-        </StackPanel>
-        <Frame x:Name="Main" Margin="0,35,0,0" NavigationUIVisibility="Hidden" BorderThickness="1" BorderBrush="Gray" Source="Library.xaml"/>
+    <Grid Background="Lavender"> <!--CHANGE THIS TO LOGIN DEFAULT-->
+        <Frame Source="Main.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
