@@ -15,6 +15,10 @@
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="12"/>
         </Style>
+        <Style TargetType="Button">
+            <Setter Property="BorderBrush" Value="DeepSkyBlue"/>
+            <Setter Property="Background" Value="SkyBlue"/>
+        </Style>
     </Page.Resources>
     
     <Grid Background="{StaticResource GradBG}">
@@ -50,7 +54,7 @@
                     <StackPanel Style="{StaticResource MainStack}" Grid.Row="2">
                         <Label Content="_Language:" Target="{Binding ElementName=bkLanguage}"/>
                         <ComboBox x:Name="bkLanguage" TabIndex="4">
-                            <ComboBoxItem Content="EN"/>
+                            <ComboBoxItem IsSelected="True" Content="EN"/>
                             <ComboBoxItem Content="FR"/>
                         </ComboBox>
                     </StackPanel>
@@ -60,22 +64,40 @@
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Row="2" Grid.Column="1">
                         <Label Content="_Publication Date:"/>
-                        <DatePicker TabIndex="5"/>
+                        <DatePicker x:Name="bkPub" TabIndex="5"/>
                     </StackPanel>
-                    <Button Grid.Column="2" Grid.Row="2" Content="Add Book" Margin="5" BorderBrush="DeepSkyBlue" Background="SkyBlue"/>
+                    <Button Grid.Column="2" Grid.Row="2" Content="Add Book" Margin="5" Click="Add_Book_Button_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Change a Book">
-                <StackPanel>
-
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Style="{StaticResource MainStack}" Grid.Row="0">
+                        <Label Content="Search for a Book:"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox Width="80">
+                                <ComboBoxItem IsSelected="True" Content="Title"/>
+                                <ComboBoxItem Content="Author"/>
+                                <ComboBoxItem Content="Genre"/>
+                                <ComboBoxItem Content="ISBN"/>
+                                <ComboBoxItem Content="Any"/>
+                            </ComboBox>
+                            <TextBox Margin="5,0,0,0" x:Name="SearchTitle" Width="250"/>
+                            <Button Content="Search" Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Label Content="Results:"/>
+                        <DataGrid x:Name="resultGrid"></DataGrid>
+                    </StackPanel>
+                </Grid>
             </TabItem>
-            <TabItem Header="Search for a Book">
-                <StackPanel>
-
-                </StackPanel>
-            </TabItem>
-
         </TabControl>
     </Grid>
 </Page>

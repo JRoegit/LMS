@@ -12,7 +12,7 @@
     <Grid Background="{StaticResource GradBG}">
         
         <Image Source="/Images/library.png" Width="150" Height="150" Margin="225,0,0,0"/>
-        <StackPanel Margin="20,0,0,0" Orientation="Vertical">
+        <StackPanel Margin="10" Orientation="Vertical">
             <StackPanel Orientation="Vertical" Width="195" HorizontalAlignment="Left">
                 <Label Content="LMS Login"/>
                 <Label Content="_Username:" Target="{Binding ElementName=txtUser}"/>
