@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="LMS" Height="230" Width="400"
+        Title="LMS" Height="200" Width="400"
         ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
         Icon="/Images/icon.png"
         >
     <Grid> <!--CHANGE THIS TO LOGIN DEFAULT-->

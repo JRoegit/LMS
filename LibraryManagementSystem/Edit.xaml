@@ -5,47 +5,69 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LibraryManagementSystem"
       mc:Ignorable="d" 
-      d:DesignHeight="230" d:DesignWidth="400"
+      Height="200" Width="400"
+      d:DesignHeight="200" d:DesignWidth="400"
       Title="Edit">
     <Page.Resources>
-        <Style TargetType="StackPanel">
+        <Style x:Key="MainStack" TargetType="StackPanel">
             <Setter Property="Margin" Value="5"/>
         </Style>
         <Style TargetType="Label">
-            <Setter Property="FontSize" Value="10"/>
-        </Style>
-        <Style x:Key="1line" TargetType="TextBox">
-            <Setter Property="Width" Value="180"/>
+            <Setter Property="FontSize" Value="12"/>
         </Style>
     </Page.Resources>
+    
     <Grid Background="{StaticResource GradBG}">
-        <TabControl>
+        <TabControl Background="{StaticResource GradBG}">
             <TabItem Header="Add a Book">
-                <UniformGrid>
-                    <StackPanel>
-                        <Label Content="Book _Title:" Target="{Binding ElementName=bkTitle}"/>
-                        <TextBox Style="{StaticResource 1line}" x:Name="bkTitle"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Style="{StaticResource MainStack}" Grid.Column="0">
+                        <Label Content="_Title:" Target="{Binding ElementName=bkTitle}"/>
+                        <TextBox x:Name="bkTitle" TabIndex="0"/>
                     </StackPanel>
-                    <StackPanel>
-                        <Label Content="Book _Author:" Target="{Binding ElementName=bkAuthor}"/>
-                        <TextBox Style="{StaticResource 1line}" x:Name="bkAuthor"/>
+                    <StackPanel Style="{StaticResource MainStack}" Grid.Column="1">
+                        <Label Content="_Author:" Target="{Binding ElementName=bkAuthor}"/>
+                        <TextBox x:Name="bkAuthor" TabIndex="1"/>
                     </StackPanel>
-                    <StackPanel>
-                        <Label Content="_Language" Target="{Binding ElementName=bkLanguage}"/>
-                        <ComboBox>
-                            <ComboBoxItem>Hello</ComboBoxItem>
+                    <StackPanel Style="{StaticResource MainStack}" Grid.Column="2" Grid.RowSpan="3">
+                        <Label Content="_Description:" Target="{Binding ElementName=bkDesc}"/>
+                        <TextBox x:Name="bkDesc" TextWrapping="Wrap" AcceptsReturn="True" Height="75" MaxLength="256" TabIndex="6"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource MainStack}" Grid.Row="1">
+                        <Label Content="_Genre(s):" Target="{Binding ElementName=bkGenre}"/>
+                        <TextBox x:Name="bkGenre" TabIndex="2"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource MainStack}" Grid.Row="2">
+                        <Label Content="_Language:" Target="{Binding ElementName=bkLanguage}"/>
+                        <ComboBox x:Name="bkLanguage" TabIndex="4">
+                            <ComboBoxItem Content="EN"/>
+                            <ComboBoxItem Content="FR"/>
                         </ComboBox>
                     </StackPanel>
-                </UniformGrid>
+                    <StackPanel Style="{StaticResource MainStack}" Grid.Column="1" Grid.Row="1">
+                        <Label Content="_ISBN Number:" Target="{Binding ElementName=bkISBN}"/>
+                        <TextBox x:Name="bkISBN" MaxLength="13" TabIndex="3"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource MainStack}" Grid.Row="2" Grid.Column="1">
+                        <Label Content="_Publication Date:"/>
+                        <DatePicker TabIndex="5"/>
+                    </StackPanel>
+                    <Button Grid.Column="2" Grid.Row="2" Content="Add Book" Margin="5" BorderBrush="DeepSkyBlue" Background="SkyBlue"/>
+                </Grid>
             </TabItem>
-            <TabItem Header="Remove a Book">
+            <TabItem Header="Change a Book">
                 <StackPanel>
-                    
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Update a Book">
-                <StackPanel>
-                    
+
                 </StackPanel>
             </TabItem>
             <TabItem Header="Search for a Book">

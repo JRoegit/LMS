@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LibraryManagementSystem"
       mc:Ignorable="d" 
-      d:DesignHeight="230" d:DesignWidth="400"
+      Height="200" Width="400"
+      d:DesignHeight="200" d:DesignWidth="400"
       Title="Browse">
 
     <Grid Background="{StaticResource GradBG}">
