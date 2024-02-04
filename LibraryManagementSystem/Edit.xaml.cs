@@ -34,26 +34,78 @@ namespace LibraryManagementSystem
 		}
 		private string title;
 		private string author;
-		private string ISBN;
 		private string language;
+		private string ISBN;
 		private string description;
 		private string pubDate;
+		private string genreSearch;
 		private List<string> genres;
 		private void Add_Book_Button_Click(object sender, RoutedEventArgs e)
 		{
 			title = bkTitle.Text;
 			author = bkAuthor.Text;
-			ISBN = bkISBN.Text;
 			language = bkLanguage.Text;
+			ISBN = bkISBN.Text;
 			description = bkDesc.Text;
-			genres = bkGenre.Text.Split(',',' ').ToList<string>();
 			pubDate = bkPub.Text;
-			string giantmess = title + author + description + language + ISBN + pubDate + genres;
-			MessageBox.Show(giantmess);
-			//Check if ISBN already exists in db, then attempt to add book to db, uppon success, pop up window saying success
-		
-		}
+			genres = bkGenre.Text.Split(',').ToList<string>();
+			
+			if (Is_ISBN(ISBN))
+			{
+				//Make a seperate function that adds to the db probably?
+				//Check if ISBN already exists in db, then attempt to add book to db, uppon success, pop up window saying success
+			}	
+			else
+			{
+				MessageBox.Show("ERROR\nEnter a valid ISBN Number.", "Error");
+			}
 
+		}
+		private void Search_Book_Button_Click(object sender, RoutedEventArgs e)
+		{
+			switch (searchOpt.Text)
+			{
+				case "Title":
+					title = searchText.Text;
+					break;
+				case "Author":
+					author = searchText.Text;
+					break;
+				case "Genre":
+					genreSearch = searchText.Text;
+					break;
+				case "ISBN":
+					ISBN = searchText.Text;
+					if (Is_ISBN(ISBN)) 
+					{
+						//do stuff
+					}
+					else
+					{
+						MessageBox.Show("ERROR\nEnter a valid ISBN Number.", "Error");
+					}
+					break;
+			}
+			string mashup = title + author + genreSearch + ISBN;
+			MessageBox.Show(mashup);
+		}
+		private bool Is_ISBN(string ISBN) // ISBN NUMBER VALIDATOR (GOATED)
+		{
+			short ISBNSize = 0;
+			foreach (char c in ISBN)
+			{
+				ISBNSize++;
+				if (!Char.IsDigit(c))
+				{
+					return false;
+				}
+			}
+			if (!(ISBNSize == 10 || ISBNSize == 13)) //ISBN conditions, Must be 10 or 13 chars, and all nums
+			{
+				return false;
+			}
+			return true;
+		}
 		public class BookInfo // FOR RETURN FROM DB????
 		{
 			public string Title { get; set; }
@@ -61,7 +113,7 @@ namespace LibraryManagementSystem
 			public string Description { get; set; }
 			public string ISBN {  get; set; }
 			public string[] Genres { get; set; }
-			public DateTime PUBDATE { get; set;}
+			public DateTime PUBDATE { get; set;} // probably not using tis format???
 
 		}
 	}

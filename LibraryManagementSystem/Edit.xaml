@@ -35,6 +35,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+                    <!--WOULD BE MORE SENSIBLE TO HAVE BASIC STACKS WITH STYLE AND THE TWO THAT ARE DIFFERENT HAVE A KEY...-->
                     <StackPanel Style="{StaticResource MainStack}" Grid.Column="0">
                         <Label Content="_Title:" Target="{Binding ElementName=bkTitle}"/>
                         <TextBox x:Name="bkTitle" TabIndex="0"/>
@@ -81,20 +82,20 @@
                     <StackPanel Style="{StaticResource MainStack}" Grid.Row="0">
                         <Label Content="Search for a Book:"/>
                         <StackPanel Orientation="Horizontal">
-                            <ComboBox Width="80">
+                            <ComboBox Width="80" x:Name="searchOpt">
                                 <ComboBoxItem IsSelected="True" Content="Title"/>
                                 <ComboBoxItem Content="Author"/>
                                 <ComboBoxItem Content="Genre"/>
                                 <ComboBoxItem Content="ISBN"/>
-                                <ComboBoxItem Content="Any"/>
                             </ComboBox>
-                            <TextBox Margin="5,0,0,0" x:Name="SearchTitle" Width="250"/>
-                            <Button Content="Search" Margin="5,0,0,0"/>
+                            <TextBox Margin="5,0,0,0" x:Name="searchText" Width="250"/>
+                            <Button Content="Search" Margin="5,0,0,0" Click="Search_Book_Button_Click"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Horizontal">
                         <Label Content="Results:"/>
                         <DataGrid x:Name="resultGrid"></DataGrid>
+                        <!--FIGURE THIS OUT?-->
                     </StackPanel>
                 </Grid>
             </TabItem>
