@@ -21,16 +21,11 @@ namespace LibraryManagementSystem
 	/// </summary>
 	public partial class Edit : Page
 	{
+		List<BookInfo> books = new List<BookInfo>();
 		public Edit()
 		{
 			InitializeComponent();
-
-			//resultGrid;  MAKE RESULT GRID FOR RETURN FROM DB WHEN SEARCHING
-			//
-			//List<BookInfo> books = new List<BookInfo>();
-			//
-			//
-			//
+			//MAKE RESULT GRID FOR RETURN FROM DB WHEN SEARCHING
 		}
 		private string title;
 		private string author;
@@ -66,7 +61,7 @@ namespace LibraryManagementSystem
 			switch (searchOpt.Text)
 			{
 				case "Title":
-					title = searchText.Text;
+					title = searchText.Text;					
 					break;
 				case "Author":
 					author = searchText.Text;
@@ -88,8 +83,18 @@ namespace LibraryManagementSystem
 			}
 			string mashup = title + author + genreSearch + ISBN;
 			MessageBox.Show(mashup);
+			resultGrid.ItemsSource = books;
 		}
-		private bool Is_ISBN(string ISBN) // ISBN NUMBER VALIDATOR (GOATED)
+		private string Genres_toString(List<string> Genres)
+		{
+			StringBuilder newString = new StringBuilder();
+			foreach (string str in Genres)
+			{
+				newString.Append(str + ", ");
+			}
+			return newString.ToString();
+		}
+		private bool Is_ISBN(string ISBN)
 		{
 			short ISBNSize = 0;
 			foreach (char c in ISBN)
@@ -112,9 +117,9 @@ namespace LibraryManagementSystem
 			public string Author { get; set; }	
 			public string Description { get; set; }
 			public string ISBN {  get; set; }
-			public string[] Genres { get; set; }
-			public DateTime PUBDATE { get; set;} // probably not using tis format???
-
+			public string PubDate { get; set; }
+			public string Language { get; set; }
+			public string Genres { get; set; }
 		}
 	}
 }
