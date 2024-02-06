@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Runtime.CompilerServices;
 
 namespace LibraryManagementSystem
 {
@@ -23,11 +25,21 @@ namespace LibraryManagementSystem
 	/// </summary>
 	public partial class Login : Page
 	{
-		
+		public string connStr = "Server=localhost\\SQLEXPRESS;Database=Library;Trusted_Connection=True";
+		public SqlConnection conn;
 		public Login()
 		{
 			InitializeComponent();
-			
+
+			conn = new SqlConnection(connStr);
+			try
+			{
+				conn.Open();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
 		}
 
 		private void Sign_Up_Button_Click(object sender, RoutedEventArgs e)
@@ -42,29 +54,54 @@ namespace LibraryManagementSystem
 			{ 
 				username = txtUser.Text;
 				password = txtPass.Password;
-			
-				byte[] tmpSource;
-				byte[] tmpHash;
-					
-				tmpSource = ASCIIEncoding.ASCII.GetBytes(password + username); //use username as salt
-				tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
 
-				StringBuilder sb = new StringBuilder();
-				foreach (byte b in tmpHash)
+				string hashword = hash(username, password);
+				SqlCommand sqlCommand = new SqlCommand();
+				sqlCommand.Connection = conn;
+				sqlCommand.CommandText = @"SELECT * FROM Users WHERE Username = @username";
+				sqlCommand.Parameters.AddWithValue("username", username);
+				SqlDataReader reader = sqlCommand.ExecuteReader();
+				if(reader == null)
 				{
-					sb.Append(b);
+					MessageBox.Show("NO USER WITH THAT NAME");
 				}
-				MessageBox.Show(sb.ToString());
-				this.NavigationService.Navigate(new Uri("/Library.xaml", UriKind.Relative));
-				
+				else if(reader.Read())
+				{
+					string uname = reader["Username"].ToString();
+					string pword = reader["password"].ToString();
+					
+					if (check_pass(hashword, pword))
+					{	
+						reader.Close();
+						conn.Close();
+						this.NavigationService.Navigate(new Uri("/Library.xaml", UriKind.Relative));
+					}
+					else
+					{
+						MessageBox.Show("Incorrect username or password.");
+					}
+				}
 			}
-			//ADD CHECKS FOR SUCCESSFUL LOGIN BEFORE CHANGING TABS
-			
 		}
-		private bool Check_Login(string username,string password)
+		private string hash(string username, string password)
 		{
-			//compare hashed value to the hashed value stored in the db?
-			return false;
+			byte[] tmpSource;
+			byte[] tmpHash;
+
+			tmpSource = ASCIIEncoding.ASCII.GetBytes(password + username); //use username as salt
+			tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
+
+			StringBuilder sb = new StringBuilder();
+			foreach (byte b in tmpHash)
+			{
+				sb.Append(b);
+			}
+			return sb.ToString();
 		}
+		private bool check_pass(string entered, string real)
+		{
+			return entered.Equals(real);
+		}
+
 	}
 }
