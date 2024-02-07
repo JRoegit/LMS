@@ -13,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
@@ -26,11 +27,13 @@ namespace LibraryManagementSystem
 	{
 		public string connStr = "Server=localhost\\SQLEXPRESS;Database=Library;Trusted_Connection=True";
 		public SqlConnection conn;
-		public List<BookInfo> books;
+		public List<BookInfo> books = new List<BookInfo>();
 		public Edit()
 		{
 			InitializeComponent();
-			
+
+			resultGrid.ItemsSource = books;
+			resultGrid.MaxColumnWidth = 150;
 			//MAKE RESULT GRID FOR RETURN FROM DB WHEN SEARCHING
 		}
 		private string title;
@@ -40,7 +43,7 @@ namespace LibraryManagementSystem
 		private string description;
 		private string pubDate;
 		private string genreSearch;
-		private List<string> genres;
+		private string genres;
 		private void Add_Book_Button_Click(object sender, RoutedEventArgs e)
 		{
 			conn = new SqlConnection(connStr);
@@ -59,7 +62,7 @@ namespace LibraryManagementSystem
 			ISBN = bkISBN.Text;
 			description = bkDesc.Text;
 			pubDate = bkPub.Text;
-			genres = bkGenre.Text.Split(',').ToList<string>();
+			genres = bkGenre.Text;
 			
 			if (Is_ISBN(ISBN))
 			{
@@ -68,7 +71,7 @@ namespace LibraryManagementSystem
 				sqlCommand.Parameters.AddWithValue("isbn", ISBN);
 				sqlCommand.Parameters.AddWithValue("title", title);
 				sqlCommand.Parameters.AddWithValue("author", author);
-				sqlCommand.Parameters.AddWithValue("genres", Genres_toString(genres));
+				sqlCommand.Parameters.AddWithValue("genres", genres);
 				sqlCommand.Parameters.AddWithValue("lang", language);
 				sqlCommand.Parameters.AddWithValue("pub", pubDate);
 				sqlCommand.Parameters.AddWithValue("descrip", description);
@@ -95,6 +98,8 @@ namespace LibraryManagementSystem
 		}
 		private void Search_Book_Button_Click(object sender, RoutedEventArgs e)
 		{
+
+			books.Clear();
 			conn = new SqlConnection(connStr);
 			try
 			{
@@ -104,50 +109,30 @@ namespace LibraryManagementSystem
 			{
 				MessageBox.Show(ex.ToString());
 			}
+
+			SqlCommand sqlCommand = new SqlCommand();
+			sqlCommand.Connection = conn;
+
 			switch (searchOpt.Text)
-			{// -----------------------------FIX THIS SHIT----------------------------------------------------------
+			{
 				case "Title":
 					title = searchText.Text;
-					MessageBox.Show("WHJAT THE FUYCKJ");
-					SqlCommand sqlCommand = new SqlCommand();
-					sqlCommand.Connection = conn;
-					sqlCommand.CommandText = @"SELECT * FROM Book WHERE Title IN ('@txt')";
-					sqlCommand.Parameters.AddWithValue("txt", title);
-					SqlDataReader reader = sqlCommand.ExecuteReader();
-					MessageBox.Show(reader.ToString());
-					if (reader != null)
-					{
-						while (reader.Read())
-						{
-							MessageBox.Show("IM INSANE IM GOING INSANE");
-							books.Add(new BookInfo(
-								reader["Title"].ToString(),
-								reader["Author"].ToString(),
-								reader["Descrip"].ToString(),
-								reader["ISBN"].ToString(),
-								reader["Pub"].ToString(),
-								reader["Lang"].ToString(),
-								reader["Genres"].ToString())
-									);
-						}
-					}
-					reader.Close();
-					//query(title, "Title");
-					MessageBox.Show("I LOVE C#");
+					sqlCommand.CommandText = "SELECT * FROM Book WHERE Title LIKE " + "'%" + title + "%'";	
 					break;
 				case "Author":
 					author = searchText.Text;
-					query(author,"Author");
+					sqlCommand.CommandText = "SELECT * FROM Book WHERE Author LIKE " + "'%" + author + "%'";
 					break;
 				case "Genre":
 					genreSearch = searchText.Text;
-					query(genreSearch, "Genres");
+					sqlCommand.CommandText = "SELECT * FROM Book WHERE Genres LIKE " + "'%" + genreSearch + "%'"; 
 					break;
 				case "ISBN":
 					ISBN = searchText.Text;
 					if (Is_ISBN(ISBN)) 
 					{
-						query(ISBN, "ISBN");
+						sqlCommand.CommandText = @"SELECT * FROM Book WHERE ISBN = @txt";
+						sqlCommand.Parameters.AddWithValue("txt", ISBN);
 					}
 					else
 					{
@@ -155,15 +140,27 @@ namespace LibraryManagementSystem
 					}
 					break;
 			}
-			string mashup = "";
-			foreach (var b in books)
+
+			SqlDataReader reader = sqlCommand.ExecuteReader();
+			if (reader != null)
 			{
-				MessageBox.Show(books.ToString());
-				mashup = b.Title + b.Author + b.Genres + b.Description + b.ISBN + b.Language + b.PubDate;
+				while (reader.Read())
+				{
+					BookInfo tmpbook = new BookInfo(
+						reader["Title"].ToString(),
+						reader["Author"].ToString(),
+						reader["Descrip"].ToString(),
+						reader["ISBN"].ToString(),
+						reader["Pub"].ToString(),
+						reader["Lang"].ToString(),
+						reader["Genres"].ToString());
+					books.Add(tmpbook);
+				}
 			}
-			
-			MessageBox.Show(mashup);
-			resultGrid.ItemsSource = books;
+
+			reader.Close();
+
+			resultGrid.Items.Refresh();
 			conn.Close();
 		}
 		private string Genres_toString(List<string> Genres)
@@ -193,9 +190,7 @@ namespace LibraryManagementSystem
 			return true;
 		}
 		private void query(string txt, string search)
-		{	
-			
-			
+		{
 			
 		}
 		public class BookInfo // FOR RETURN FROM DB????
