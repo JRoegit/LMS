@@ -163,14 +163,13 @@ namespace LibraryManagementSystem
 			resultGrid.Items.Refresh();
 			conn.Close();
 		}
-		private string Genres_toString(List<string> Genres)
+		private void Update_Button_Click(object sender, RoutedEventArgs e)
+		{ 
+		
+		}
+		private void Delete_Button_Click(object sender, RoutedEventArgs e)
 		{
-			StringBuilder newString = new StringBuilder();
-			foreach (string str in Genres)
-			{
-				newString.Append(str + ", ");
-			}
-			return newString.ToString();
+
 		}
 		private bool Is_ISBN(string ISBN)
 		{
@@ -189,10 +188,7 @@ namespace LibraryManagementSystem
 			}
 			return true;
 		}
-		private void query(string txt, string search)
-		{
-			
-		}
+		
 		public class BookInfo // FOR RETURN FROM DB????
 		{
 			public string Title { get; set; }
