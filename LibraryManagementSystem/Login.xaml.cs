@@ -30,16 +30,6 @@ namespace LibraryManagementSystem
 		public Login()
 		{
 			InitializeComponent();
-
-			conn = new SqlConnection(connStr);
-			try
-			{
-				conn.Open();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.ToString());
-			}
 		}
 
 		private void Sign_Up_Button_Click(object sender, RoutedEventArgs e)
@@ -49,9 +39,18 @@ namespace LibraryManagementSystem
 		private string username;
 		private string password;
 		private void Login_Button_Click(object sender, RoutedEventArgs e)
-		{
+		{	
 			if(txtUser.Text != "" && txtPass.Password != "") 
-			{ 
+			{
+				conn = new SqlConnection(connStr);
+				try
+				{
+					conn.Open();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.ToString());
+				}
 				username = txtUser.Text;
 				password = txtPass.Password;
 
@@ -81,6 +80,8 @@ namespace LibraryManagementSystem
 						MessageBox.Show("Incorrect username or password.");
 					}
 				}
+				conn.Close();
+				reader.Close();
 			}
 		}
 		private string hash(string username, string password)
