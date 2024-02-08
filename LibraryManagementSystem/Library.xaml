@@ -20,20 +20,16 @@
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Width" Value="115"/>
         </Style>
-        <Style TargetType="WrapPanel">
-            <Setter Property="Orientation" Value="Horizontal"/>
-            <Setter Property="Width" Value="150"/>
-        </Style>
         <Style TargetType="Image" x:Key="buttonimg">
             <Setter Property="Height" Value="25"/>
             <Setter Property="Width" Value="25"/>
         </Style>
     </Page.Resources>
     <Grid Background="{StaticResource GradBG}">
-        <Image Source="/Images/library.png" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,20,40,20" Height="100" Width="100"/>
+        <Image Source="/Images/library.png" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,40,0" Height="153" Width="153"/>
         <StackPanel Margin="15" Width="160" HorizontalAlignment="Left">
-            <Button Click="Edit_Button_Click">
-                <WrapPanel>
+            <Button Click="Edit_Button_Click" VerticalAlignment="Center">
+                <WrapPanel Height="60">
                     <Image Style="{StaticResource buttonimg}" Source="/Images/Edit.png"/>
                     <TextBlock Text="Edit Library"/>
                 </WrapPanel>
