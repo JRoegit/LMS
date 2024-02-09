@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
@@ -80,14 +81,20 @@ namespace LibraryManagementSystem
 				{
 					sqlCommand.ExecuteNonQuery();
 					MessageBox.Show("Book added successfully.");
-					this.NavigationService.GoBack();
 				}
 				catch (Exception ex)
 				{
 					MessageBox.Show(ex.ToString());
 				}
-				//Make a seperate function that adds to the db probably?
-				//Check if ISBN already exists in db, then attempt to add book to db, uppon success, pop up window saying success
+
+				bkTitle.Text = "";
+				bkAuthor.Text = "";
+				bkLanguage.Text = "";
+				bkISBN.Text = "";
+				bkDesc.Text = "";
+				bkPub.Text = "";
+				bkGenre.Text = "";
+
 			}	
 			else
 			{
@@ -186,16 +193,22 @@ namespace LibraryManagementSystem
 
 				if (reader != null)
 				{
-					reader.Read();
-					resultbook = new BookInfo(
-						reader["Title"].ToString(),
-						reader["Author"].ToString(),
-						reader["Descrip"].ToString(),
-						reader["ISBN"].ToString(),
-						reader["Pub"].ToString(),
-						reader["Lang"].ToString(),
-						reader["Genres"].ToString()
-						);
+					if (reader.Read())
+					{
+						resultbook = new BookInfo(
+							reader["Title"].ToString(),
+							reader["Author"].ToString(),
+							reader["Descrip"].ToString(),
+							reader["ISBN"].ToString(),
+							reader["Pub"].ToString(),
+							reader["Lang"].ToString(),
+							reader["Genres"].ToString()
+							);
+					}
+					else
+					{
+						MessageBox.Show("No book with that ISBN number", "ISBN Error");
+					}
 				}
 
 				TitleSearch.Text = resultbook.Title;
@@ -205,7 +218,7 @@ namespace LibraryManagementSystem
 				LanguageSearch.Text = resultbook.Language;
 				PubDateSearch.Text = resultbook.PubDate;
 				DescSearch.Text = resultbook.Description;
-
+				reader.Close();
 				conn.Close();
 			}
 			else
@@ -215,12 +228,77 @@ namespace LibraryManagementSystem
 
 		}
 		private void Update_Button_Click(object sender, RoutedEventArgs e)
-		{ 
-		
+		{
+			conn = new SqlConnection(connStr);
+			try
+			{
+				conn.Open();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+
+			SqlCommand sqlCommand = new SqlCommand(
+				"UPDATE Book SET " +
+				"Title = '" + TitleSearch.Text + "', " +
+				"Author = '" + AuthorSearch.Text + "', " +
+				"Genres = '" + GenreSearch.Text + "', " +
+				"Lang = '" + LanguageSearch.Text + "', " +
+				"Pub = '" + PubDateSearch.Text + "', " +
+				"Descrip = '" + DescSearch.Text + "' " +
+				"WHERE ISBN = '" + resultbook.ISBN + "' "
+				);
+			sqlCommand.Connection = conn;
+
+			try
+			{
+				sqlCommand.ExecuteNonQuery();
+				MessageBox.Show("Book updated successfully.");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+			conn.Close();
 		}
 		private void Delete_Button_Click(object sender, RoutedEventArgs e)
 		{
+			conn = new SqlConnection(connStr);
+			try
+			{
+				conn.Open();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
 
+			SqlCommand sqlCommand = new SqlCommand(
+				"DELETE FROM Book WHERE ISBN = '" + resultbook.ISBN + "'" 	
+				);
+			sqlCommand.Connection = conn;
+
+			try
+			{
+				sqlCommand.ExecuteNonQuery();
+				MessageBox.Show("Book updated successfully.");
+				ISBNSearch.Text = "";
+				TitleSearch.Text = "";
+				AuthorSearch.Text = "";
+				DescSearch.Text = "";
+				ISBNSear.Text = "";
+				PubDateSearch.Text = "";
+				GenreSearch.Text = "";
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+
+			resultbook = new BookInfo("", "", "", "", "", "", "");
+			conn.Close();
+			//remember to null out the result book.
 		}
 		private bool Is_ISBN(string ISBN)
 		{

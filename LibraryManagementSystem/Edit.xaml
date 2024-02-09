@@ -38,19 +38,19 @@
                     <!--WOULD BE MORE SENSIBLE TO HAVE BASIC STACKS WITH STYLE AND THE TWO THAT ARE DIFFERENT HAVE A KEY...-->
                     <StackPanel Style="{StaticResource MainStack}" Grid.Column="0">
                         <Label Content="_Title:" Target="{Binding ElementName=bkTitle}"/>
-                        <TextBox x:Name="bkTitle" TabIndex="0"/>
+                        <TextBox x:Name="bkTitle" TabIndex="0" MaxLength="64"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Column="1">
                         <Label Content="_Author:" Target="{Binding ElementName=bkAuthor}"/>
-                        <TextBox x:Name="bkAuthor" TabIndex="1"/>
+                        <TextBox x:Name="bkAuthor" TabIndex="1" MaxLength="64"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Column="2" Grid.RowSpan="3">
                         <Label Content="_Description:" Target="{Binding ElementName=bkDesc}"/>
-                        <TextBox x:Name="bkDesc" TextWrapping="Wrap" AcceptsReturn="True" Height="150" MaxLength="256" TabIndex="6"/>
+                        <TextBox x:Name="bkDesc" TextWrapping="Wrap" AcceptsReturn="True" Height="150" MaxLength="1024" TabIndex="6"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Row="1">
                         <Label Content="_Genre(s):" Target="{Binding ElementName=bkGenre}"/>
-                        <TextBox x:Name="bkGenre" TabIndex="2"/>
+                        <TextBox x:Name="bkGenre" TabIndex="2" MaxLength="256"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Row="2">
                         <Label Content="_Language:" Target="{Binding ElementName=bkLanguage}"/>
@@ -65,7 +65,7 @@
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Row="2" Grid.Column="1">
                         <Label Content="_Publication Date:"/>
-                        <DatePicker x:Name="bkPub" TabIndex="5"/>
+                        <TextBox x:Name="bkPub" TabIndex="5" MaxLength="10"/>
                     </StackPanel>
                     <Button Grid.Column="2" Grid.Row="2" Content="Add Book" Margin="5.5,31,5.5,35.5" Click="Add_Book_Button_Click"/>
                 </Grid>
@@ -85,32 +85,32 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
                         <Label Content="_ISBN:" Target="{Binding ElementName=ISBNSearch}" VerticalAlignment="Center"/>
-                        <TextBox x:Name="ISBNSearch" Width="200" Height="21" VerticalAlignment="Center"/>
+                        <TextBox x:Name="ISBNSearch" Width="200" Height="21" VerticalAlignment="Center" MaxLength="13"/>
                         <Button  Content="Search" Width="100" Margin="10,14.5,10,14.5" Click="Search_ISBN_Button_Click"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Column="0" Grid.Row="1">
                         <Label Content="_Title:" Target="{Binding ElementName=TitleSearch}"/>
-                        <TextBox x:Name="TitleSearch" TabIndex="0"/>
+                        <TextBox x:Name="TitleSearch" TabIndex="0" MaxLength="64"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Column="1" Grid.Row="1">
                         <Label Content="_Author:" Target="{Binding ElementName=AuthorSearch}"/>
-                        <TextBox x:Name="AuthorSearch" TabIndex="1"/>
+                        <TextBox x:Name="AuthorSearch" TabIndex="1" MaxLength="64"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3">
                         <Label Content="_Description:" Target="{Binding ElementName=DescSearch}"/>
-                        <TextBox x:Name="DescSearch" TextWrapping="Wrap" AcceptsReturn="True" Height="110" MaxLength="256" TabIndex="6"/>
+                        <TextBox x:Name="DescSearch" TextWrapping="Wrap" AcceptsReturn="True" Height="110" MaxLength="1024" TabIndex="6"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Row="2" Grid.Column="0">
                         <Label Content="_Genre(s):" Target="{Binding ElementName=GenreSearch}"/>
-                        <TextBox x:Name="GenreSearch" TabIndex="2"/>
+                        <TextBox x:Name="GenreSearch" TabIndex="2" MaxLength="256"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Row="3" Grid.Column="0">
                         <Label Content="_Language:" Target="{Binding ElementName=LanguageSearch}"/>
-                        <TextBox x:Name="LanguageSearch"/>
+                        <TextBox x:Name="LanguageSearch" MaxLength="2"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Column="1" Grid.Row="2">
                         <Label Content="_ISBN Number:" Target="{Binding ElementName=ISBNSear}"/>
-                        <TextBox x:Name="ISBNSear" MaxLength="13" TabIndex="3"/>
+                        <TextBox x:Name="ISBNSear" IsReadOnly="True" MaxLength="13" TabIndex="3"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Row="3" Grid.Column="1">
                         <Label Content="_Publication Date:" Target="{Binding ElementName=PubDateSearch}"/>
