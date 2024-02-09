@@ -27,14 +27,15 @@ namespace LibraryManagementSystem
 		public string connStr = "Server=localhost\\SQLEXPRESS;Database=Library;Trusted_Connection=True";
 		public SqlConnection conn;
 		public List<BookInfo> books = new List<BookInfo>();
+		public BookInfo resultbook;
 		public Edit()
 		{
 			InitializeComponent();
 
 			resultGrid.ItemsSource = books;
 			resultGrid.MaxColumnWidth = 150;
-			//MAKE RESULT GRID FOR RETURN FROM DB WHEN SEARCHING
 		}
+
 		private string title;
 		private string author;
 		private string language;
@@ -162,6 +163,57 @@ namespace LibraryManagementSystem
 			resultGrid.Items.Refresh();
 			conn.Close();
 		}
+		private void Search_ISBN_Button_Click(object sender, RoutedEventArgs e)
+		{
+			
+			ISBN = ISBNSearch.Text;
+			if (Is_ISBN(ISBN))
+			{
+				conn = new SqlConnection(connStr);
+				try
+				{
+					conn.Open();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.ToString());
+				}
+				
+				SqlCommand sqlCommand = new SqlCommand();
+				sqlCommand.Connection = conn;
+				sqlCommand.CommandText = "SELECT * FROM Book WHERE ISBN = " + ISBN;
+				SqlDataReader reader = sqlCommand.ExecuteReader();
+
+				if (reader != null)
+				{
+					reader.Read();
+					resultbook = new BookInfo(
+						reader["Title"].ToString(),
+						reader["Author"].ToString(),
+						reader["Descrip"].ToString(),
+						reader["ISBN"].ToString(),
+						reader["Pub"].ToString(),
+						reader["Lang"].ToString(),
+						reader["Genres"].ToString()
+						);
+				}
+
+				TitleSearch.Text = resultbook.Title;
+				AuthorSearch.Text = resultbook.Author;
+				GenreSearch.Text = resultbook.Genres;
+				ISBNSear.Text = resultbook.ISBN;
+				LanguageSearch.Text = resultbook.Language;
+				PubDateSearch.Text = resultbook.PubDate;
+				DescSearch.Text = resultbook.Description;
+
+				conn.Close();
+			}
+			else
+			{
+				MessageBox.Show("Enter a valid ISBN number.", "Input Error");
+			}
+
+		}
 		private void Update_Button_Click(object sender, RoutedEventArgs e)
 		{ 
 		
@@ -173,7 +225,7 @@ namespace LibraryManagementSystem
 		private bool Is_ISBN(string ISBN)
 		{
 			short ISBNSize = 0;
-			foreach (char c in ISBN)
+			foreach (char c in ISBN) // COULD PROBABLY CONDENSE THESE TWO INTO ONE
 			{
 				ISBNSize++;
 				if (!Char.IsDigit(c))
@@ -188,7 +240,7 @@ namespace LibraryManagementSystem
 			return true;
 		}
 		
-		public class BookInfo // FOR RETURN FROM DB????
+		public class BookInfo
 		{
 			public string Title { get; set; }
 			public string Author { get; set; }

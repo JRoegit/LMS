@@ -85,8 +85,8 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
                         <Label Content="_ISBN:" Target="{Binding ElementName=ISBNSearch}" VerticalAlignment="Center"/>
-                        <TextBox Width="200" Height="21" VerticalAlignment="Center"/>
-                        <Button x:Name="ISBNSearch" Content="Search" Width="100" Margin="10,14.5,10,14.5" />
+                        <TextBox x:Name="ISBNSearch" Width="200" Height="21" VerticalAlignment="Center"/>
+                        <Button  Content="Search" Width="100" Margin="10,14.5,10,14.5" Click="Search_ISBN_Button_Click"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource MainStack}" Grid.Column="0" Grid.Row="1">
                         <Label Content="_Title:" Target="{Binding ElementName=TitleSearch}"/>
